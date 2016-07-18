@@ -33,14 +33,21 @@ class Option
      * @var \DateTime
      */
     protected $date;
+    
+     /**
+     * @var int
+     */
+    protected $id;
 
     /**
      * Option constructor.
      *
      * @param string|\DateTime $textOrDate
+     * @param int              $dateId
      */
-    public function __construct($textOrDate)
+    public function __construct($textOrDate,$dateId)
     {
+        $this->id = $dateId;
         if ($textOrDate instanceof \DateTime) {
             $this->date = $textOrDate;
         } else {
@@ -78,6 +85,13 @@ class Option
         } else {
             return $this->text;
         }
+    }
+    
+    /**
+     * @return int
+     */
+    public function getId() {
+        return $this->id;
     }
 
 }
