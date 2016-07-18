@@ -1,5 +1,5 @@
 {
-  "name": "causal/doodle_client",
+  "name": "michabbb/doodle_client",
   "description": "A small, lightweight library to interact with Doodle (http://doodle.com)",
   "type": "library",
   "license": "GPL-3.0+",
