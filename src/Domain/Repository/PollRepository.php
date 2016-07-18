@@ -128,11 +128,11 @@ class PollRepository
         $info = $this->injectInfo($poll);
         $type = $poll->getType();
         $options = array();
-        foreach ($info['optionsText'] as $optionText) {
-            $option = $type === Poll::TYPE_DATE
-                ? new \DateTime($optionText)
-                : $optionText;
-            $options[] = new Option($option);
+        foreach ($info['optionsText'] as $i => $optionText) {
+            #$option = $type === Poll::TYPE_DATE
+            #    ? new \DateTime($optionText)
+            #    : $optionText;
+            $options[] = new Option($optionText,$info['fcOptions'][$i]['id']);
         }
         $poll->setOptions($options);
     }
