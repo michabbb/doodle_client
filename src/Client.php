@@ -421,9 +421,15 @@ class Client {
         $response = $this->doPost('/np/new-polls/' . $poll->getId() . '/delete', $data);
     }
 
-    public function deleteParticipant(Poll $poll,$participantid) {
+    /**
+     * @param Poll $poll
+     * @param      $participantid
+     *
+     * @throws \Exception
+     */
+    public function deleteParticipant(Poll $poll, $participantid) {
         if (empty($poll->getAdminKey())) {
-            throw new \Exception(sprintf('Admin key not available. Poll %s cannot be deleted.', $poll->getId()), 1443782170);
+            throw new \Exception(sprintf('Admin key not available. Participant %s cannot be deleted.', $participantid), 1443782170);
         }
         $data = array(
             'adminKey' => $poll->getAdminKey(),
