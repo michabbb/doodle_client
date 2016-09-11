@@ -47,6 +47,11 @@ class Participant
     protected $preferences;
 
     /**
+     * @var string
+     */
+    protected $userBehindParticipant;
+
+    /**
      * Participant constructor.
      *
      * @param string $id
@@ -129,6 +134,24 @@ class Participant
     public function setPreferences(array $preferences)
     {
         $this->preferences = $preferences;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserBehindParticipant()
+    {
+        return $this->userBehindParticipant;
+    }
+
+    /**
+     * @param string $userBehindParticipant
+     * @return $this
+     */
+    public function setUserBehindParticipant($userBehindParticipant)
+    {
+        $this->userBehindParticipant = $userBehindParticipant;
         return $this;
     }
 
