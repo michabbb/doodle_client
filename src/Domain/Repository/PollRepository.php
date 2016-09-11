@@ -160,7 +160,7 @@ class PollRepository
                 ->setName($p['name'])
                 ->setAvatar(isset($p['avatar']) ? $p['avatar'] : '')
                 ->setPreferences($preferences)
-                ->setUserBehindParticipant(($p['userBehindParticipant']));
+                ->setUserBehindParticipant(isset($p['userBehindParticipant']) ? $p['userBehindParticipant'] : '');
 
             $participants[] = $participant;
         }
