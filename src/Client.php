@@ -642,7 +642,12 @@ EOT;
         $cookies['token'] = $cookies['DoodleAuthentication'];
         $cookies['token']['name'] = 'token';
         $cookies['token']['value'] = $randomString;
-
+        $cookies['d-betaCode'] = $cookies['DoodleAuthentication'];
+        $cookies['d-betaCode']['name'] = 'd-betaCode';
+        $cookies['d-betaCode']['value'] = true;
+        $cookies['d-forceBeta'] = $cookies['DoodleAuthentication'];
+        $cookies['d-forceBeta']['name'] = 'd-forceBeta';
+        $cookies['d-forceBeta']['value'] = false;
         $this->persistCookies($cookies);
         $this->token = $randomString;
     }
