@@ -128,11 +128,13 @@ class PollRepository
         $info = $this->injectInfo($poll);
         $type = $poll->getType();
         $options = array();
-        foreach ($info['optionsText'] as $i => $optionText) {
+        foreach ($info['options'] as $i => $optionText) {
             #$option = $type === Poll::TYPE_DATE
             #    ? new \DateTime($optionText)
             #    : $optionText;
-            $options[] = new Option($optionText,$info['fcOptions'][$i]['id']);
+			$start = date("Y-m-d\TH:i:s",substr($optionText['start'],0,-3));
+			$end   = date("Y-m-d\TH:i:s",substr($optionText['end'],0,-3));
+            $options[] = new Option($i,new \DateTime($start),new \DateTime($end));
         }
         $poll->setOptions($options);
     }
@@ -158,9 +160,9 @@ class PollRepository
             $participant = new Participant($p['id']);
             $participant
                 ->setName($p['name'])
-                ->setAvatar(isset($p['avatar']) ? $p['avatar'] : '')
+                ->setAvatar(isset($p['largeAvatarUrl']) ? $p['largeAvatarUrl'] : '')
                 ->setPreferences($preferences)
-                ->setUserBehindParticipant(isset($p['userBehindParticipant']) ? $p['userBehindParticipant'] : '');
+                ->setUserBehindParticipant(isset($p['userId']) ? $p['userId'] : '');
 
             $participants[] = $participant;
         }

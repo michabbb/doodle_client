@@ -32,27 +32,30 @@ class Option
     /**
      * @var \DateTime
      */
-    protected $date;
+    protected $dateStart;
+
+	/**
+	 * @var \DateTime
+	 */
+    protected $dateEnd;
     
      /**
      * @var int
      */
     protected $id;
 
-    /**
-     * Option constructor.
-     *
-     * @param string|\DateTime $textOrDate
-     * @param int              $dateId
-     */
-    public function __construct($textOrDate,$dateId)
+	/**
+	 * Option constructor.
+	 *
+	 * @param int $dateId
+	 * @param     $start
+	 * @param     $end
+	 */
+    public function __construct($dateId,\DateTime $start,\DateTime $end)
     {
         $this->id = $dateId;
-        if ($textOrDate instanceof \DateTime) {
-            $this->date = $textOrDate;
-        } else {
-            $this->text = (string)$textOrDate;
-        }
+        $this->dateStart = $start;
+        $this->dateEnd = $end;
     }
 
     /**
@@ -70,10 +73,20 @@ class Option
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateStart()
     {
-        return $this->date;
+        return $this->dateStart;
     }
+
+	/**
+	 * Returns the date.
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateEnd()
+	{
+		return $this->dateEnd;
+	}
 
     /**
      * @return string
