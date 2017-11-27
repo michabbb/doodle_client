@@ -92,5 +92,16 @@ class ApiTestWrite extends init {
 			print_r($ret);
 		}
 	}
+
+	public function test_deleteParticipant() {
+		$myPolls = $this->doodleClient->getPersonalPolls();
+		foreach ($myPolls as $Poll) {
+			$participants = $Poll->getParticipants();
+			foreach ($participants as $participant) {
+				echo 'Delete Participant: '.$participant->getId() . ' at ' . $Poll->getTitle() . "\n";
+				$this->assertTrue($this->doodleClient->deleteParticipant($Poll, $participant->getId()));
+			}
+		}
+	}
 }
  

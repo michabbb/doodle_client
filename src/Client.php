@@ -648,21 +648,11 @@ EOT;
 		return $this->doDelete('/api/v2.0/polls/' . $poll->getId() . '?adminKey='.$poll->getAdminKey());
 	}
 
-	/**
-	 * @param Poll $poll
-	 * @param      $participantid
-	 *
-	 * @throws \Exception
-	 */
-	public function deleteParticipant(Poll $poll, $participantid) {
+	public function deleteParticipant(Poll $poll,$participantid) {
 		if (empty($poll->getAdminKey())) {
-			throw new \Exception(sprintf('Admin key not available. Participant %s cannot be deleted.', $participantid), 1443782170);
+			throw new \Exception(sprintf('Admin key not available. Poll %s cannot be deleted.', $poll->getId()), 1443782170);
 		}
-		$data     = [
-			'adminKey' => $poll->getAdminKey(),
-			'token'    => $this->token,
-		];
-		$response = $this->doPost('/np/new-polls/' . $poll->getId() . '/participants/' . $participantid . '/delete', $data);
+		return $this->doDelete('/api/v2.0/polls/' . $poll->getId() . '/participants/'.$participantid.'?adminKey='.$poll->getAdminKey());
 	}
 
 	public function _getInfo(Poll $poll) {
