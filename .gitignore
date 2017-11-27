@@ -3,3 +3,5 @@ vendor/
 
 # local tests
 test.php
+tests/config.ini
+
